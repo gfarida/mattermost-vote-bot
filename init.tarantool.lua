@@ -5,14 +5,10 @@ box.cfg{
 
 box.schema.user.grant('guest', 'read,write,execute', 'universe')
 
-if not box.space.polls then
-    box.schema.create_space('polls')
-    box.space.polls:format({
-        {name = 'id', type = 'string'},
-        {name = 'question', type = 'string'},
-        {name = 'options', type = 'map'},
-        {name = 'creator', type = 'string'},
-        {name = 'active', type = 'boolean'}
-    })
-    box.space.polls:create_index('primary', {parts = {'id'}})
+local user = box.space._user.index.name:get('guest')
+if user ~= nil then
+    local privileges = box.schema.user.info('guest').universe
+    if not privileges or #privileges == 0 then
+        box.schema.user.grant('guest', 'read,write,execute', 'universe')
+    end
 end

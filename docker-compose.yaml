@@ -39,7 +39,9 @@ services:
     command: tarantool /opt/tarantool/init.lua
 
   bot:
-    build: ./bot
+    build:
+      context: .          
+      dockerfile: Dockerfile
     depends_on:
       tarantool:
         condition: service_healthy
@@ -49,6 +51,7 @@ services:
       MATTERMOST_URL: "http://mattermost:8065"
       MATTERMOST_TOKEN: "fog6komsptdmzp6kzf3nhgy96y"
       TARANTOOL_URI: "tarantool:3301"
+
 
 volumes:
   postgres_data:
