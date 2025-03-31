@@ -49,7 +49,7 @@ services:
         condition: service_started
     environment:
       MATTERMOST_URL: "http://mattermost:8065"
-      MATTERMOST_TOKEN: "fog6komsptdmzp6kzf3nhgy96y"
+      MATTERMOST_TOKEN: "MATTERMOST_TOKEN"
       TARANTOOL_URI: "tarantool:3301"
 
 
