@@ -19,7 +19,9 @@
 2. Запустите систему:
 
 ``` bash
-    docker-compose up --build -d
+    docker compose down -v
+    docker compose build --no-cache bot
+    docker compose up -d
 ```
 
 ## Команды
